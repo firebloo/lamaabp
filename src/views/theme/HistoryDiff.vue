@@ -1,43 +1,20 @@
 <template>
   <div>
     <CRow>
-      <CCol sm="6">
+      <CCol lg="12">
         <CCard>
           <CCardHeader>
-            <strong>Sites </strong> <small>Form</small>
-            <div class="card-header-actions">
-              <a
-                href="https://coreui.io/vue/docs/components/form-components"
-                class="card-header-action"
-                rel="noreferrer noopener"
-                target="_blank"
-              >
-                <small class="text-muted">docs</small>
-              </a>
-            </div>
+            <strong>History Diff </strong>
           </CCardHeader>
           <CCardBody>
             <CRow>
-              <CCol sm="12">
-                <CInput v-model="SiteName"
-                  label="SiteName"
-                  placeholder="Enter site name"
+              <CCol lg="12">
+                <CTableWrapper
+                  :items="getHistory()"
+                  striped
+                  caption="History Diff"
                 />
               </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="12">
-                <CInput v-model="URL"
-                  label="URL"
-                  placeholder="https://aws.amazon.com"
-                />
-              </CCol>
-              <ul v-if="toDoItems && toDoItems.length">
-                <li v-for="toDoItem of toDoItems">
-                  SiteName: {{toDoItem[0]}}
-                  URL: {{toDoItem[1]}}
-                </li>
-              </ul>
             </CRow>
 <!--            <CRow>-->
 <!--              <CCol sm="4">-->
@@ -61,8 +38,6 @@
 <!--            </CRow>-->
           </CCardBody>
           <CCardFooter>
-              <CButton type="submit" size="sm" color="primary" v-on:click="insertSite"><CIcon name="cil-check-circle"/> Submit</CButton>
-              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Reset</CButton>
           </CCardFooter>
         </CCard>
       </CCol>
@@ -904,14 +879,17 @@
 
 <script>
 import axios from 'axios'
-import { Auth } from 'aws-amplify';
+import CTableWrapper from "../base/HistoryDiffTable.vue";
 
 export default {
   name: 'Forms',
+  components: { CTableWrapper },
   data () {
     return {
       SiteName: '',
-      URL: '',
+      RuleName: '',
+      KeywordName: '',
+      SchedulerName: '',
       toDoItems: [],
       selected: [], // Must be an array reference!
       show: true,
@@ -943,7 +921,7 @@ export default {
   //     })
   // },
   created () {           // 초기화 함수를 정의 한다.
-    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/sites')
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/historydiff')
       .then(response =>  {
         this.toDoItems = response.data.map(r => r);
       })
@@ -952,17 +930,25 @@ export default {
     validator (val) {
       return val ? val.length >= 4 : false
     },
-    insertSite: function() {
-      axios.post('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/site', {
-        sitename: this.SiteName,
-        url: this.URL
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    getHistory () {
+      let arr = [];
+      for (let i= 0;i<=this.toDoItems.length -1;i++) {
+        arr.push(
+            { id : this.toDoItems[i][0],
+              sitename : this.toDoItems[i][1],
+              schedulername : this.toDoItems[i][2],
+              keywordname : this.toDoItems[i][3],
+              keyword: this.toDoItems[i][4],
+              pastdatetime : this.toDoItems[i][5],
+              pastcnt : this.toDoItems[i][6],
+              currentdatetime : this.toDoItems[i][7],
+              currentcnt : this.toDoItems[i][8],
+              cntdiff : this.toDoItems[i][9],
+              addpmid : this.toDoItems[i][10],
+              removepmid : this.toDoItems[i][11]
+            })
+      }
+      return arr;
     }
   }
 }

@@ -956,6 +956,7 @@ export default {
       })
       .then(function (response) {
         console.log(response);
+        alert("Registration Successful!!")
       })
       .catch(function (error) {
         console.log(error);

@@ -11,7 +11,7 @@ const Colors = () => import('@/views/theme/Colors')
 const Typography = () => import('@/views/theme/Typography')
 
 const History = () => import('@/views/theme/History')
-const Run = () => import('@/views/theme/Run')
+const HistoryDiff = () => import('@/views/theme/HistoryDiff')
 const Rules = () => import('@/views/theme/Rules')
 const cognitologin = () => import('@/views/theme/Login')
 const Sites = () => import('@/views/base/Sites')
@@ -106,9 +106,9 @@ function configRoutes () {
               component: History
             },
             {
-              path: 'run',
-              name: 'Run',
-              component: Run
+              path: 'historydiff',
+              name: 'HistoryDiff',
+              component: HistoryDiff
             },
             {
               path: 'rules',

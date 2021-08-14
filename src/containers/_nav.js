@@ -24,8 +24,8 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Run',
-        to: '/theme/run',
+        name: 'HistoryDiff',
+        to: '/theme/HistoryDiff',
         icon: 'cil-pencil'
       },
       {
