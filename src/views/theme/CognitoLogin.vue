@@ -21,7 +21,7 @@ import Amplify from 'aws-amplify';
 import { Auth } from 'aws-amplify';
 import '@aws-amplify/ui-vue';
 Amplify.configure(awsconfig);
-Auth.federatedSignIn({provider: 'lamaabp.com'});
+
 
 export default {
   name: "CognitoLogin",
@@ -30,16 +30,15 @@ export default {
         (authState, authData) => { this.authState = authState; this.user = authData; })
   },
   mounted() {
-    Auth.currentSession()
-    .then(data => {
-        let idToken = data.getIdToken();
-        console.log("login")
-        console.log(idToken);
-        console.dir(idToken);
-        let email = idToken.payload.email;
-        console.log(email);
-    })
-    .catch(err => console.log(err));
+
+    Auth.federatedSignIn(
+        'cognito-idp.us-east-1.amazonaws.com/us-east-1_8PmOLN8mA',
+        'myeongsu@lamaabp.com'
+    ).then(user => {
+      // If success, the user object you passed in Auth.federatedSignIn
+      console.log(user);
+    });
+
   },
   data() {
     return {
