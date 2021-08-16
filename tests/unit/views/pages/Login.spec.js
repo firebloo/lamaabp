@@ -5,7 +5,7 @@ import Login from '@/views/pages/Login'
 
 Vue.use(CoreuiVue)
 
-describe('Login.vue', () => {
+describe('CognitoLogin.vue', () => {
   it('has a name', () => {
     expect(Login.name).toBe('Login')
   })

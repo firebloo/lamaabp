@@ -13,7 +13,7 @@ const Typography = () => import('@/views/theme/Typography')
 const History = () => import('@/views/theme/History')
 const HistoryDiff = () => import('@/views/theme/HistoryDiff')
 const Rules = () => import('@/views/theme/Rules')
-const cognitologin = () => import('@/views/theme/Login')
+const CognitoLogin = () => import('@/views/theme/CognitoLogin')
 const Sites = () => import('@/views/base/Sites')
 const Keywords = () => import('@/views/base/Keywords')
 const Schedulers = () => import('@/views/base/Schedulers')
@@ -114,6 +114,11 @@ function configRoutes () {
               path: 'rules',
               name: 'Rules',
               component: Rules
+            },
+            {
+              path: 'CognitoLogin',
+              name: 'CognitoLogin',
+              component: CognitoLogin
             },
             {
               path: 'typography',
