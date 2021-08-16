@@ -535,6 +535,12 @@ export default {
       ]
     }
   },
+  created () {
+    axios.get('https://us-east-1.quicksight.aws.amazon.com/accounts/220185592349/dashboards/c0c0fd21-cb06-4009-b941-58920779d31d/embed-url?creds-type=ANONYMOUS&namespace=default&reset-disabled=False&session-lifetime=600&state-persistence-enabled=False')
+      .then(function (response) {
+        console.log(response);
+      })
+  },
   mounted () {           // 초기화 함수를 정의 한다.
     var containerDiv = document.getElementById("embeddingContainer");
     console.log(containerDiv)
@@ -547,8 +553,8 @@ export default {
         width: "1000px",
         footerPaddingEnabled: true
     };
-    dashboard = QuickSightEmbedding.embedDashboard(options);
-    console.log(dashboard)
+    // dashboard = QuickSightEmbedding.embedDashboard(options);
+    // console.log(dashboard)
   },
   methods: {
     color (value) {
