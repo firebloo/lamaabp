@@ -33,7 +33,6 @@ export default {
       // If success, the user object you passed in Auth.federatedSignIn
       console.log(email);
     });
-
   },
   data() {
     return {
