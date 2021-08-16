@@ -464,6 +464,7 @@ import axios from "axios";
 import * as QuickSightEmbedding from "amazon-quicksight-embedding-sdk";
 
 var dashboard;
+var quicksighturl;
 
 export default {
   name: 'Dashboard',
@@ -536,25 +537,35 @@ export default {
     }
   },
   created () {
-    axios.get('https://us-east-1.quicksight.aws.amazon.com/accounts/220185592349/dashboards/c0c0fd21-cb06-4009-b941-58920779d31d/embed-url?creds-type=ANONYMOUS&namespace=default&reset-disabled=False&session-lifetime=600&state-persistence-enabled=False')
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight')
       .then(function (response) {
-        console.log(response);
+        console.log(response['data']);
+        quicksighturl = response['data']
       })
   },
   mounted () {           // 초기화 함수를 정의 한다.
-    var containerDiv = document.getElementById("embeddingContainer");
-    console.log(containerDiv)
-    var options = {
-        // replace this dummy url with the one generated via embedding API
-        url: "https://us-east-1.quicksight.aws.amazon.com/embed/c2dc3c5522ed4db2aed85b888ab7a14e/dashboards/c0c0fd21-cb06-4009-b941-58920779d31d?code=AYABeKNPN5LeY41sIaLXgyVas0kAAAABAAdhd3Mta21zAEthcm46YXdzOmttczp1cy1lYXN0LTE6MjU5NDgwNDYyMTMyOmtleS81NGYwMjdiYy03MDJhLTQxY2YtYmViNS0xNDViOTExNzFkYzMAuAECAQB4ZGLViwIvMWeq0eg2SdOyWJS86qkEBfgLEiY79AhlHtMBBEVYofg3yaVsU7-YaPNiCQAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDA8aooZqAizPmKGj3AIBEIA79JP3jtirME8HbMoVJJcib8vT6zd2_YlbbBll8bjdXNBUDP6WNLHMusufCSSZaaUjO6kfM1yoK1ACsusCAAAAAAwAABAAAAAAAAAAAAAAAAAAkqbcWPrubLMS2LNwY5WZa_____8AAAABAAAAAAAAAAAAAAABAAAAm1t1p3pc-kzeAjkX9k4x7P-fPVp-ciYaR7SLJgYtjaJQGkQKa2qcgkEaSJpwSzwBF8ZM3QpEMv3YfuBwJKH_gotGh44ulYt5b0GF1QW9SDo-NRVXNuhxb6-wfc9dehCzs7XS5btgTPYJzlQn_Z4jp-MBuKFNijgg7A8MeSZ3-a3jw0bfnfHpldFZOHwQ6COyLS3Pryhek81QbijJm45EbkmsWcUQZ-GpnJucVw%3D%3D&identityprovider=quicksight&isauthcode=true",
-        container: containerDiv,
-        scrolling: "no",
-        height: "700px",
-        width: "1000px",
-        footerPaddingEnabled: true
-    };
-    // dashboard = QuickSightEmbedding.embedDashboard(options);
-    // console.log(dashboard)
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight')
+      .then(function (response) {
+        console.log(response['data']);
+        quicksighturl = response['data']
+
+        var containerDiv = document.getElementById("embeddingContainer");
+        console.log(quicksighturl)
+        var options = {
+            // replace this dummy url with the one generated via embedding API
+            url: quicksighturl,
+            container: containerDiv,
+            scrolling: "no",
+            height: "700px",
+            width: "1000px",
+            footerPaddingEnabled: true
+        };
+        dashboard = QuickSightEmbedding.embedDashboard(options);
+        console.log(dashboard)
+      }
+      );
+
+
   },
   methods: {
     color (value) {
