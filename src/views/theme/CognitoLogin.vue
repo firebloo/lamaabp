@@ -21,7 +21,7 @@ import Amplify from 'aws-amplify';
 import { Auth } from 'aws-amplify';
 import '@aws-amplify/ui-vue';
 Amplify.configure(awsconfig);
-Auth.federatedSignIn({provider: 'SAML'});
+Auth.federatedSignIn({provider: 'lamaabp.com'});
 
 export default {
   name: "CognitoLogin",
