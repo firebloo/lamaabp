@@ -32,7 +32,7 @@ export default {
   mounted() {
 
     Auth.federatedSignIn(
-        'cognito-idp.us-east-1.amazonaws.com/us-east-1_8PmOLN8mA',
+        'lamaabp.com',
         'myeongsu@lamaabp.com'
     ).then(user => {
       // If success, the user object you passed in Auth.federatedSignIn
