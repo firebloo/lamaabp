@@ -29,10 +29,16 @@ export default {
     this.unsubscribeAuth = onAuthUIStateChange(
         (authState, authData) => { this.authState = authState; this.user = authData; this.$user = authData.username });
     this.unsubscribeAuthFed = Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
-    ).then(email => {
-      // If success, the user object you passed in Auth.federatedSignIn
-      console.log(email);
-      this.$user = email;
+    ).then(cred => {
+      // If success, you will get the AWS credentials
+      console.log(cred);
+      this.$user = cred;
+      return Auth.currentAuthenticatedUser();
+    }).then(user => {
+        // If success, the user object you passed in Auth.federatedSignIn
+        console.log(user);
+    }).catch(e => {
+        console.log(e)
     });
   },
   data() {

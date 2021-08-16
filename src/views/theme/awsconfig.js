@@ -12,8 +12,8 @@ export default {
             "profile",
             "aws.cognito.signin.user.admin"
         ],
-        "redirectSignIn": "https://master.d1o62audtbihat.amplifyapp.com/dashboard",
-        "redirectSignOut": "https://master.d1o62audtbihat.amplifyapp.com/dashboard",
+        "redirectSignIn": "https://master.d1o62audtbihat.amplifyapp.com/CognitoLogin",
+        "redirectSignOut": "https://master.d1o62audtbihat.amplifyapp.com/CognitoLogin",
         "responseType": "code"
     },
   }
