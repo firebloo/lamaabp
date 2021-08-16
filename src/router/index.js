@@ -68,7 +68,7 @@ const User = () => import('@/views/users/User')
 Vue.use(Router)
 
 export default new Router({
-  mode: 'hash', // https://router.vuejs.org/api/#mode
+  mode: 'history', // https://router.vuejs.org/api/#mode
   linkActiveClass: 'active',
   scrollBehavior: () => ({ y: 0 }),
   routes: configRoutes()
@@ -86,6 +86,11 @@ function configRoutes () {
           path: 'dashboard',
           name: 'Dashboard',
           component: Dashboard
+        },
+        {
+          path: 'CognitoLogin',
+          name: 'CognitoLogin',
+          component: CognitoLogin
         },
         {
           path: 'theme',
@@ -114,11 +119,6 @@ function configRoutes () {
               path: 'rules',
               name: 'Rules',
               component: Rules
-            },
-            {
-              path: 'CognitoLogin',
-              name: 'CognitoLogin',
-              component: CognitoLogin
             },
             {
               path: 'typography',
