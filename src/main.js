@@ -23,6 +23,8 @@ Vue.config.performance = true
 Vue.use(CoreuiVue)
 Vue.prototype.$log = console.log.bind(console)
 
+Vue.prototype.$user = '';
+
 new Vue({
   el: '#app',
   router,
