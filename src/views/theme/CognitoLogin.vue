@@ -28,6 +28,13 @@ export default {
   created() {
     this.unsubscribeAuth = onAuthUIStateChange(
         (authState, authData) => { this.authState = authState; this.user = authData; this.$user = authData.username });
+  },
+  data() {
+    return {
+      user: undefined, authState: undefined, unsubscribeAuth: undefined, unsubscribeAuthFed: undefined
+    }
+  },
+  beforUpdate() {
     this.unsubscribeAuthFed = Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
     ).then(cred => {
       // If success, you will get the AWS credentials
@@ -40,11 +47,6 @@ export default {
     }).catch(e => {
         console.log(e)
     });
-  },
-  data() {
-    return {
-      user: undefined, authState: undefined, unsubscribeAuth: undefined, unsubscribeAuthFed: undefined
-    }
   },
   beforeUnmount() {
     this.unsubscribeAuth();
