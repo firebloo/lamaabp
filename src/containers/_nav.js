@@ -24,19 +24,19 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'HistoryDiff',
+        name: 'Compare',
         to: '/theme/HistoryDiff',
-        icon: 'cil-pencil'
+        icon: 'cil-star'
+      },
+      {
+        _name: 'CSidebarNavTitle',
+        _children: ['Scraper']
       },
       {
         _name: 'CSidebarNavItem',
         name: 'Rules',
         to: '/theme/rules',
         icon: 'cil-pencil'
-      },
-      {
-        _name: 'CSidebarNavTitle',
-        _children: ['Scraper']
       },
       {
         _name: 'CSidebarNavDropdown',
@@ -134,12 +134,12 @@ export default [
       //     }
       //   ]
       // },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Charts',
-        to: '/charts',
-        icon: 'cil-chart-pie'
-      },
+      // {
+      //   _name: 'CSidebarNavItem',
+      //   name: 'Charts',
+      //   to: '/charts',
+      //   icon: 'cil-chart-pie'
+      // },
       // {
       //   _name: 'CSidebarNavDropdown',
       //   name: 'Icons',
@@ -199,34 +199,34 @@ export default [
         _name: 'CSidebarNavDivider',
         _class: 'm-2'
       },
-      {
-        _name: 'CSidebarNavTitle',
-        _children: ['Extras']
-      },
-      {
-        _name: 'CSidebarNavDropdown',
-        name: 'Pages',
-        route: '/pages',
-        icon: 'cil-star',
-        items: [
-          {
-            name: 'Login',
-            to: '/pages/login'
-          },
-          {
-            name: 'Register',
-            to: '/pages/register'
-          },
-          {
-            name: 'Error 404',
-            to: '/pages/404'
-          },
-          {
-            name: 'Error 500',
-            to: '/pages/500'
-          }
-        ]
-      },
+      // {
+      //   _name: 'CSidebarNavTitle',
+      //   _children: ['Extras']
+      // },
+      // {
+      //   _name: 'CSidebarNavDropdown',
+      //   name: 'Pages',
+      //   route: '/pages',
+      //   icon: 'cil-star',
+      //   items: [
+      //     {
+      //       name: 'Login',
+      //       to: '/pages/login'
+      //     },
+      //     {
+      //       name: 'Register',
+      //       to: '/pages/register'
+      //     },
+      //     {
+      //       name: 'Error 404',
+      //       to: '/pages/404'
+      //     },
+      //     {
+      //       name: 'Error 500',
+      //       to: '/pages/500'
+      //     }
+      //   ]
+      // },
       // {
       //   _name: 'CSidebarNavItem',
       //   name: 'Download CoreUI',
