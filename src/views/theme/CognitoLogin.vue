@@ -20,6 +20,15 @@ export default {
     console.log("aaaa");
 
     console.log(Auth.currentUserInfo())
+  },
+  mounted () {
+   Auth.currentUserInfo()
+      .then((res) => {
+        console.log('Here are the current user info! =>', res);
+      })
+      .catch((err) => {
+        console.log('Current user info failed to fetch', err);
+      });
   }
 }
 </script>
