@@ -21,7 +21,7 @@ import Amplify from 'aws-amplify';
 import { Auth } from 'aws-amplify';
 import '@aws-amplify/ui-vue';
 Amplify.configure(awsconfig);
-
+import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 
 export default {
   name: "CognitoLogin",
@@ -31,9 +31,7 @@ export default {
   },
   mounted() {
 
-    Auth.federatedSignIn(
-        'lamaabp.com',
-        'myeongsu@lamaabp.com'
+    Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
     ).then(user => {
       // If success, the user object you passed in Auth.federatedSignIn
       console.log(user);
