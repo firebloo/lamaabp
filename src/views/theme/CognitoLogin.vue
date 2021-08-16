@@ -27,16 +27,12 @@ export default {
   name: "CognitoLogin",
   created() {
     this.unsubscribeAuth = onAuthUIStateChange(
-        (authState, authData) => { this.authState = authState; this.user = authData; })
-  },
-  mounted() {
-
+        (authState, authData) => { this.authState = authState; this.user = authData; });
     Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
-    ).then(user => {
+    ).then(email => {
       // If success, the user object you passed in Auth.federatedSignIn
-      console.log(user);
+      console.log(email);
     });
-
   },
   data() {
     return {
