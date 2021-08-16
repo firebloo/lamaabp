@@ -33,6 +33,8 @@ export default {
     Auth.currentSession()
     .then(data => {
         let idToken = data.getIdToken();
+        console.log("login")
+        console.log(idToken);
         console.dir(idToken);
         let email = idToken.payload.email;
         console.log(email);
