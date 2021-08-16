@@ -540,7 +540,7 @@ export default {
     console.log(containerDiv)
     var options = {
         // replace this dummy url with the one generated via embedding API
-        url: "https://us-east-1.quicksight.aws.amazon.com/embed/0f24f70ad6fa482ab7a4352c8ea6e496/dashboards/c0c0fd21-cb06-4009-b941-58920779d31d?code=AYABeMTNTY5R2S9ZXpFXxyLjnsoAAAABAAdhd3Mta21zAEthcm46YXdzOmttczp1cy1lYXN0LTE6MjU5NDgwNDYyMTMyOmtleS81NGYwMjdiYy03MDJhLTQxY2YtYmViNS0xNDViOTExNzFkYzMAuAECAQB4ZGLViwIvMWeq0eg2SdOyWJS86qkEBfgLEiY79AhlHtMBZYZPf850HyRFPD57urk0LwAAAH4wfAYJKoZIhvcNAQcGoG8wbQIBADBoBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDNs7fwRWjzmQVULWBAIBEIA7ieySoFM11Kn0v1fcJCZfZmD8Us_MaMBeuARTae8B54AVRacHGWDAYO6aHUxKlPeJOMw6f4b-_npGex0CAAAAAAwAABAAAAAAAAAAAAAAAAAA9QGim-2oAyyvNJw_7dkk8v____8AAAABAAAAAAAAAAAAAAABAAAAm0QK1vX6meTiidB5U7UMmNDO3I9u3mEBR3OMsQ7L_eV49t_oPow5tUFQgLH4SZYc7BeBQ84w6Ew8nJEMhK61qB2IHqwN5wILQn85GYmrMgpx6vXgfBDgMMKLNEG2JdqXhYwPcpBM-0suZb1LhtR5XT3A8oChigkPH9q5zseRjPl0mkyJQTtri_sAUZFCx7V0W6whejZhc-cX6AAYSsu_WGXbLGdrl9Vs0LVqQQ%3D%3D&identityprovider=quicksight&isauthcode=true",
+        url: "https://us-east-1.quicksight.aws.amazon.com/embed/9d508d4a80be4287afe32fe2fb51b9ca/dashboards/c0c0fd21-cb06-4009-b941-58920779d31d",
         container: containerDiv,
         scrolling: "no",
         height: "700px",
