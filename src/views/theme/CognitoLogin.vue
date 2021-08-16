@@ -28,19 +28,21 @@ export default {
   created() {
     this.unsubscribeAuth = onAuthUIStateChange(
         (authState, authData) => { this.authState = authState; this.user = authData; });
-    Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
+    this.unsubscribeAuthFed = Auth.federatedSignIn( {provider: CognitoHostedUIIdentityProvider.Cognito}
     ).then(email => {
       // If success, the user object you passed in Auth.federatedSignIn
       console.log(email);
     });
+
   },
   data() {
     return {
-      user: undefined, authState: undefined, unsubscribeAuth: undefined
+      user: undefined, authState: undefined, unsubscribeAuth: undefined, unsubscribeAuthFed: undefined
     }
   },
   beforeUnmount() {
     this.unsubscribeAuth();
+    this.unsubscribeAuthFed();
   }
 }
 </script>
