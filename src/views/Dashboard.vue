@@ -462,6 +462,7 @@ import WidgetsDropdown from './widgets/WidgetsDropdown'
 import WidgetsBrand from './widgets/WidgetsBrand'
 import axios from "axios";
 import * as QuickSightEmbedding from "amazon-quicksight-embedding-sdk";
+
 var dashboard;
 
 export default {
@@ -534,7 +535,7 @@ export default {
       ]
     }
   },
-  created () {           // 초기화 함수를 정의 한다.
+  mounted () {           // 초기화 함수를 정의 한다.
     var containerDiv = document.getElementById("embeddingContainer");
     console.log(containerDiv)
     var options = {
