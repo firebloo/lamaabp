@@ -68,9 +68,6 @@
 <script>
 export default {
   name: 'TheHeaderDropdownAccnt',
-  created() {
-    console.log(this.$user)
-  },
   data () {
     return { 
       itemsCount: 42

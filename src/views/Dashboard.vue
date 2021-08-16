@@ -541,7 +541,8 @@ export default {
       .then(function (response) {
         console.log(response['data']);
         quicksighturl = response['data']
-      })
+      }),
+    console.log(this.$user)
   },
   mounted () {           // 초기화 함수를 정의 한다.
     axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight')
