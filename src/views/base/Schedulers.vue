@@ -55,16 +55,6 @@
                 />
               </CCol>
             </CRow>
-            <ul v-if="toDoItems && toDoItems.length">
-                <li v-for="toDoItem of toDoItems">
-                  SchedulerName: {{toDoItem[0]}}
-                  Month: {{toDoItem[1]}}
-                  Week: {{toDoItem[2]}}
-                  Day: {{toDoItem[3]}}
-                  Hour: {{toDoItem[4]}}
-                  Minute: {{toDoItem[5]}}
-                </li>
-              </ul>
 <!--            <CRow>-->
 <!--              <CCol sm="4">-->
 <!--                <CSelect-->
@@ -85,10 +75,23 @@
 <!--                />-->
 <!--              </CCol>-->
 <!--            </CRow>-->
+            <CRow>
+              <CCol align="right">
+                <CButton type="submit" size="sm" color="primary" v-on:click="insertSite"><CIcon name="cil-check-circle"/> Submit</CButton>
+                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Reset</CButton>
+              </CCol>
+            </CRow>
           </CCardBody>
           <CCardFooter>
-              <CButton type="submit" size="sm" color="primary" v-on:click="insertSite"><CIcon name="cil-check-circle"/> Submit</CButton>
-              <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Reset</CButton>
+            <CRow>
+              <CCol lg="12">
+                <CTableWrapper
+                  :items="getSchedulerList()"
+                  striped
+                  caption="Registered Sites"
+                />
+              </CCol>
+            </CRow>
           </CCardFooter>
         </CCard>
       </CCol>
@@ -930,9 +933,11 @@
 
 <script>
 import axios from 'axios'
+import CTableWrapper from './SchedulerTable.vue'
 
 export default {
   name: 'Forms',
+  components: { CTableWrapper },
   data () {
     return {
       SchedulerName: '',
@@ -996,6 +1001,16 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+    },
+    getSchedulerList () {
+      let arr = [];
+      for (let i= 0;i<=this.toDoItems.length -1;i++) {
+        arr.push({
+          Schedulername: this.toDoItems[i][0], Month: this.toDoItems[i][1], Week: this.toDoItems[i][2],
+          Day : this.toDoItems[i][3], Hour : this.toDoItems[i][4], Minute : this.toDoItems[i][5]
+        })
+      }
+      return arr;
     }
   }
 }

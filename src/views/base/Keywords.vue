@@ -23,15 +23,6 @@
                 />
               </CCol>
             </CRow>
-            <CRow>
-
-            </CRow>
-            <ul v-if="toDoItems && toDoItems.length">
-                <li v-for="toDoItem of toDoItems">
-                  KeywordName: {{toDoItem[0]}}
-                  Keyword: {{toDoItem[1]}}
-                </li>
-              </ul>
 <!--            <CRow>-->
 <!--              <CCol sm="4">-->
 <!--                <CSelect-->
@@ -52,10 +43,23 @@
 <!--                />-->
 <!--              </CCol>-->
 <!--            </CRow>-->
-          </CCardBody>
-          <CCardFooter>
+          <CRow>
+            <CCol align="right">
               <CButton type="submit" size="sm" color="primary" v-on:click="insertSite"><CIcon name="cil-check-circle"/> Submit</CButton>
               <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Reset</CButton>
+            </CCol>
+          </CRow>
+          </CCardBody>
+          <CCardFooter>
+            <CRow>
+              <CCol lg="12">
+                <CTableWrapper
+                  :items="getKeywordList()"
+                  striped
+                  caption="Registered Sites"
+                />
+              </CCol>
+            </CRow>
           </CCardFooter>
         </CCard>
       </CCol>
@@ -897,9 +901,11 @@
 
 <script>
 import axios from 'axios'
+import CTableWrapper from './KeywordTable.vue'
 
 export default {
   name: 'Forms',
+  components: { CTableWrapper },
   data () {
     return {
       KeywordName: '',
@@ -955,6 +961,13 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+    },
+    getKeywordList () {
+      let arr = [];
+      for (let i= 0;i<=this.toDoItems.length -1;i++) {
+        arr.push({keywordname : this.toDoItems[i][0], keyword : this.toDoItems[i][1]})
+      }
+      return arr;
     }
   }
 }
