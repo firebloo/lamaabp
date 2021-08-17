@@ -68,6 +68,10 @@
 <script>
 export default {
   name: 'TheHeaderDropdownAccnt',
+  mounted () {
+    console.log("mounted")
+    console.log(this.$store.state.cognitoEmail)
+  },
   data () {
     return { 
       itemsCount: 42

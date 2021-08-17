@@ -27,7 +27,15 @@ export default {
   name: "CognitoLogin",
   created() {
     this.unsubscribeAuth = onAuthUIStateChange(
-        (authState, authData) => { this.authState = authState; this.user = authData; this.$user = authData.username });
+        (authState, authData) => {
+          this.authState = authState;
+          this.user = authData;
+        });
+    console.log("created user")
+    console.log(this.user)
+    console.log("created CognitoEmail")
+    console.log(this.$store.state.cognitoEmail)
+    this.$store.commit('changeUseremail', this.user)
   },
   data() {
     return {
@@ -39,14 +47,18 @@ export default {
     ).then(cred => {
       // If success, you will get the AWS credentials
       console.log(cred);
-      this.$user = cred;
       return Auth.currentAuthenticatedUser();
     }).then(user => {
         // If success, the user object you passed in Auth.federatedSignIn
-        console.log(user);
+      this.$store.commit('changeUseremail', user)
+      console.log(user);
     }).catch(e => {
-        console.log(e)
+      console.log(e)
     });
+  },
+  mounted() {
+    console.log("This is what!!");
+    console.log(this.$store.state.cognitoEmail);
   },
   beforeUnmount() {
     this.unsubscribeAuth();
