@@ -32,9 +32,9 @@ export default {
           this.user = authData;
         });
     console.log("created user")
-    console.log(this.user)
     console.log("created CognitoEmail")
     console.log(this.$store.state.cognitoEmail)
+    this.$store.state.cognitoEmail = this.user
     this.$store.commit('changeUseremail', this.user)
   },
   data() {
