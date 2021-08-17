@@ -34,8 +34,7 @@ export default {
     console.log("created user")
     console.log("created CognitoEmail")
     console.log(this.$store.state.cognitoEmail)
-    this.$store.state.cognitoEmail = this.user
-    this.$store.commit('changeUseremail', this.user)
+    this.$store.dispatch('callMutation', { newEmail: this.user })
   },
   data() {
     return {
@@ -50,7 +49,7 @@ export default {
       return Auth.currentAuthenticatedUser();
     }).then(user => {
         // If success, the user object you passed in Auth.federatedSignIn
-      this.$store.commit('changeUseremail', user)
+      this.$store.dispatch('callMutation', { newEmail: user })
       console.log(user);
     }).catch(e => {
       console.log(e)
