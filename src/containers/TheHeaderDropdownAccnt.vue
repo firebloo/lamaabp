@@ -19,6 +19,7 @@
       <strong>Account</strong>
     </CDropdownHeader>
     <CDropdownItem>
+      {{ getMsg }}
       <CIcon name="cil-bell"/> Updates
       <CBadge color="info" class="mfs-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>
@@ -71,6 +72,11 @@ export default {
   mounted () {
     console.log("mounted")
     console.log(this.$store.state.cognitoEmail)
+  },
+  computed: {
+    getMsg () {
+      return this.$store.getters.getMsg
+    }
   },
   data () {
     return { 
