@@ -961,6 +961,7 @@ export default {
       .catch(function (error) {
         console.log(error);
       });
+      this.getSiteList()
     },
     getSiteList () {
       let arr = [];

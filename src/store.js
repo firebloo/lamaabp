@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    cognitoEmail: 'init@lamaabp.com'
+    cognitoEmail: 'Not logged in'
   },
   mutations: {
     changeEmail (state, newEmail) {
@@ -16,11 +16,12 @@ export default new Vuex.Store({
   actions: {
     callMutation ({ state, commit }, { newEmail }) {
       commit('changeEmail', newEmail)
+      alert(newEmail)
     }
   },
   getters: {
     getMsg (state) {
-      return `${state.cognitoEmail} => Length : ${state.cognitoEmail.length}`
+      return `${state.cognitoEmail}`
     }
   }
 })

@@ -30,11 +30,10 @@ export default {
         (authState, authData) => {
           this.authState = authState;
           this.user = authData;
+          console.log("start")
+          console.log(this.user.username)
+          this.$store.dispatch('callMutation', { newEmail: this.user.username })
         });
-    console.log("created user")
-    console.log("created CognitoEmail")
-    console.log(this.$store.state.cognitoEmail)
-    this.$store.dispatch('callMutation', { newEmail: this.user })
   },
   data() {
     return {
@@ -49,16 +48,19 @@ export default {
       return Auth.currentAuthenticatedUser();
     }).then(user => {
         // If success, the user object you passed in Auth.federatedSignIn
+      console.log("fedstart")
+      console.log(user)
       this.$store.dispatch('callMutation', { newEmail: user })
       console.log(user);
     }).catch(e => {
       console.log(e)
     });
   },
-  mounted() {
-    console.log("This is what!!");
-    console.log(this.$store.state.cognitoEmail);
-  },
+  // mounted() {
+  //   console.log("This is what!!");
+  //   this.$store.dispatch('callMutation', { newEmail: this.user })
+  //   console.log(this.$store.state.cognitoEmail);
+  // },
   beforeUnmount() {
     this.unsubscribeAuth();
     this.unsubscribeAuthFed();

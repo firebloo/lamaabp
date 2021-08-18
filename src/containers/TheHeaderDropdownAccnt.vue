@@ -19,7 +19,6 @@
       <strong>Account</strong>
     </CDropdownHeader>
     <CDropdownItem>
-      {{ getMsg }}
       <CIcon name="cil-bell"/> Updates
       <CBadge color="info" class="mfs-auto">{{ itemsCount }}</CBadge>
     </CDropdownItem>

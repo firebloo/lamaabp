@@ -1,6 +1,5 @@
 import 'core-js/stable'
 import Vue from 'vue'
-import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import CoreuiVue from '@coreui/vue'
@@ -22,7 +21,6 @@ import store from './store'
 
 Vue.config.performance = true
 Vue.use(CoreuiVue)
-Vue.use(Vuex)
 Vue.prototype.$log = console.log.bind(console)
 
 new Vue({
