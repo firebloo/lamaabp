@@ -4,54 +4,15 @@
       <CCol lg="12">
         <CCard>
           <CCardHeader>
-            <strong>Schedulers </strong>
+            <strong>Literature </strong>
           </CCardHeader>
           <CCardBody>
             <CRow>
-              <CCol col-sm="6">
-                <CInput v-model="SchedulerName"
-                  label="Scheduler Name"
-                  placeholder="Enter Scheduler name"
-                />
-              </CCol>
-            </CRow>
-            <CRow>
-              <CCol sm="3">
-                <CSelect
-                    label="Month"
-                    :options="[{value:-1, label:'매월'},1,2,3,4,5,6,7,8,9,10,11,12]"
-                    :value.sync="Month"
-
-                />
-              </CCol>
-              <CCol sm="3">
-                <CSelect v-model="Day"
-                    label="Day"
-                    :options="[{value:-1, label:'매일'},1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]"
-                    :value.sync="Day"
-                />
-              </CCol>
-              <CCol sm="3">
-                <CSelect v-model="Hour"
-                    label="Hour"
-                    :options="[{value:-1, label:'매시간'},0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]"
-                    :value.sync="Hour"
-                />
-              </CCol>
-              <CCol sm="3">
-                <CSelect v-model="Minute"
-                    label="Minute"
-                    :options="[{value:100, label:'매분'},0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,
-                    31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59]"
-                    :value.sync="Minute"
-                />
-              </CCol>
-              <CCol sm="3">
-                <CSelect v-model="Week"
-                    label="Week"
-                    :options="[{value:-1, label:'매일'},{value:1, label:'월'},{value:2, label:'화'},{value:3, label:'수'},
-                    {value:4, label:'목'},{value:5, label:'금'},{value:6, label:'토'},{value:7, label:'일'}]"
-                    :value.sync="Week"
+              <CCol lg="12">
+                <CTableWrapper
+                  :items="getLiterature()"
+                  striped
+                  caption="Literature"
                 />
               </CCol>
             </CRow>
@@ -75,23 +36,8 @@
 <!--                />-->
 <!--              </CCol>-->
 <!--            </CRow>-->
-            <CRow>
-              <CCol align="right">
-                <CButton type="submit" size="sm" color="primary" v-on:click="insertSite"><CIcon name="cil-check-circle"/> Submit</CButton>
-                <CButton type="reset" size="sm" color="danger"><CIcon name="cil-ban"/> Reset</CButton>
-              </CCol>
-            </CRow>
           </CCardBody>
           <CCardFooter>
-            <CRow>
-              <CCol lg="12">
-                <CTableWrapper
-                  :items="getSchedulerList()"
-                  striped
-                  caption="Registered Sites"
-                />
-              </CCol>
-            </CRow>
           </CCardFooter>
         </CCard>
       </CCol>
@@ -933,19 +879,21 @@
 
 <script>
 import axios from 'axios'
-import CTableWrapper from './SchedulerTable.vue'
+import CTableWrapper from "../base/LiteratureTable.vue";
 
 export default {
   name: 'Forms',
   components: { CTableWrapper },
   data () {
     return {
-      SchedulerName: '',
-      Month: -1,
-      Day: -1,
-      Hour: -1,
-      Minute: -1,
-      Week: -1,
+      pmid: '',
+      subject: '',
+      datetime: '',
+      sitename: '',
+      keyword: '',
+      url: '',
+      review: '',
+      s3: '',
       toDoItems: [],
       selected: [], // Must be an array reference!
       show: true,
@@ -977,7 +925,7 @@ export default {
   //     })
   // },
   created () {           // 초기화 함수를 정의 한다.
-    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/schedulers')
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/literature')
       .then(response =>  {
         this.toDoItems = response.data.map(r => r);
       })
@@ -986,34 +934,18 @@ export default {
     validator (val) {
       return val ? val.length >= 4 : false
     },
-    insertSite: function() {
-      axios.post('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/scheduler', {
-        schedulername: this.SchedulerName,
-        month: this.Month,
-        day: this.Day,
-        hour: this.Hour,
-        minute: this.Minute,
-        week: this.Week
-      })
-      .then(function (response) {
-        console.log(response);
-        alert("Registration Successful!!")
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    },
-    getSchedulerList () {
+    getLiterature () {
       let arr = [];
       for (let i= 0;i<=this.toDoItems.length -1;i++) {
-        arr.push({
-          Schedulername: this.toDoItems[i][0],
-          Month: (this.toDoItems[i][1] == -1 ? 	'매월' : this.toDoItems[i][1]),
-          Week: (this.toDoItems[i][2] == -1 ? '매주' : this.toDoItems[i][2]),
-          Day : (this.toDoItems[i][3] == -1 ? '매일' : this.toDoItems[i][3]),
-          Hour : (this.toDoItems[i][4] == -1 ? '매시' : this.toDoItems[i][4]),
-          Minute : (this.toDoItems[i][5] == -1 ? '매분' : this.toDoItems[i][5])
-        })
+        arr.push(
+            { pmid : this.toDoItems[i][0],
+              subject : this.toDoItems[i][1],
+              datetime : this.toDoItems[i][2],
+              sitename : this.toDoItems[i][3],
+              keyword : this.toDoItems[i][4],
+              url : this.toDoItems[i][5],
+              review : this.toDoItems[i][6],
+              s3 : this.toDoItems[i][7]})
       }
       return arr;
     }

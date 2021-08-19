@@ -29,6 +29,12 @@ export default [
         icon: 'cil-star'
       },
       {
+        _name: 'CSidebarNavItem',
+        name: 'Literature',
+        to: '/theme/Literature',
+        icon: 'cil-chart-pie'
+      },
+      {
         _name: 'CSidebarNavTitle',
         _children: ['Scraper']
       },

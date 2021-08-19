@@ -12,6 +12,7 @@ const Typography = () => import('@/views/theme/Typography')
 
 const History = () => import('@/views/theme/History')
 const HistoryDiff = () => import('@/views/theme/HistoryDiff')
+const Literature = () => import('@/views/theme/Literature')
 const Rules = () => import('@/views/theme/Rules')
 const CognitoLogin = () => import('@/views/theme/CognitoLogin')
 const Sites = () => import('@/views/base/Sites')
@@ -114,6 +115,11 @@ function configRoutes () {
               path: 'historydiff',
               name: 'HistoryDiff',
               component: HistoryDiff
+            },
+            {
+              path: 'literature',
+              name: 'Literature',
+              component: Literature
             },
             {
               path: 'rules',
