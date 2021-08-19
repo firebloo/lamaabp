@@ -32,7 +32,7 @@
     </CHeaderNav>
     <CHeaderNav class="mr-4">
       <CHeaderNavItem class="d-md-down-none mx-2">
-        <CHeaderNavLink>
+        <CHeaderNavLink to="/CognitoLogin" exact>
           <CIcon name="cil-bell"/>
                 {{ getMsg }}
         </CHeaderNavLink>
@@ -56,12 +56,12 @@
 </template>
 
 <script>
-import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
+// import TheHeaderDropdownAccnt from './TheHeaderDropdownAccnt'
 
 export default {
   name: 'TheHeader',
   components: {
-    TheHeaderDropdownAccnt
+    // TheHeaderDropdownAccnt
   },
   computed: {
     getMsg () {

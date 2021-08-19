@@ -450,8 +450,8 @@
 <!--&lt;!&ndash;        </CCard>&ndash;&gt;-->
 <!--      </CCol>-->
 <!--    </CRow>-->
-
-  <div id="embeddingContainer"></div>
+    <div id="embeddingContainer"></div>
+    <div id="embeddingContainer2"></div>
   </div>
 </template>
 
@@ -465,6 +465,8 @@ import * as QuickSightEmbedding from "amazon-quicksight-embedding-sdk";
 
 var dashboard;
 var quicksighturl;
+var dashboard2;
+var quicksighturl2;
 
 export default {
   name: 'Dashboard',
@@ -542,7 +544,13 @@ export default {
         console.log(response['data']);
         quicksighturl = response['data']
       }),
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight2')
+      .then(function (response) {
+        console.log(response['data']);
+        quicksighturl2 = response['data']
+      }),
     console.log(this.$user)
+
   },
   mounted () {           // 초기화 함수를 정의 한다.
     axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight')
@@ -562,6 +570,26 @@ export default {
             footerPaddingEnabled: true
         };
         dashboard = QuickSightEmbedding.embedDashboard(options);
+        console.log(dashboard)
+      }
+      ),
+    axios.get('https://7g3u095i99.execute-api.us-east-1.amazonaws.com/product/quicksight2')
+      .then(function (response) {
+        console.log(response['data']);
+        quicksighturl2 = response['data']
+
+        var containerDiv = document.getElementById("embeddingContainer2");
+        console.log(quicksighturl2)
+        var options = {
+            // replace this dummy url with the one generated via embedding API
+            url: quicksighturl2,
+            container: containerDiv,
+            scrolling: "no",
+            height: "700px",
+            width: "1000px",
+            footerPaddingEnabled: true
+        };
+        dashboard2 = QuickSightEmbedding.embedDashboard(options);
         console.log(dashboard)
       }
       );

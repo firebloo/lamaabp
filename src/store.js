@@ -16,7 +16,6 @@ export default new Vuex.Store({
   actions: {
     callMutation ({ state, commit }, { newEmail }) {
       commit('changeEmail', newEmail)
-      alert(newEmail)
     }
   },
   getters: {
